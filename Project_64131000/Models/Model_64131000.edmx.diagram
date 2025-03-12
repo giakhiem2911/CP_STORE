@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d93e060d74d64ce98b4e21239005d162" Name="Diagram1">
+        <EntityTypeShape EntityType="Project_64131000Model.Brands" Width="1.5" PointX="0.75" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="Project_64131000Model.Categories" Width="1.5" PointX="3" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="Project_64131000Model.Customers" Width="1.5" PointX="2.375" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Project_64131000Model.Employees" Width="1.5" PointX="8.25" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Project_64131000Model.OrderDetails" Width="1.5" PointX="7.5" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Project_64131000Model.Orders" Width="1.5" PointX="5.125" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Project_64131000Model.Products" Width="1.5" PointX="5.25" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Project_64131000Model.sysdiagrams" Width="1.5" PointX="10.875" PointY="5.25" IsExpanded="true" />
+        <AssociationConnector Association="Project_64131000Model.FK__Products__BrandI__5BE2A6F2" ManuallyRouted="false" />
+        <AssociationConnector Association="Project_64131000Model.FK__Products__Catego__5AEE82B9" ManuallyRouted="false" />
+        <AssociationConnector Association="Project_64131000Model.FK__Orders__Customer__6C190EBB" ManuallyRouted="false" />
+        <AssociationConnector Association="Project_64131000Model.FK__Orders__Employee__6D0D32F4" ManuallyRouted="false" />
+        <AssociationConnector Association="Project_64131000Model.FK__OrderDeta__Order__6FE99F9F" ManuallyRouted="false" />
+        <AssociationConnector Association="Project_64131000Model.FK__OrderDeta__Produ__70DDC3D8" ManuallyRouted="false" />
+        <AssociationConnector Association="Project_64131000Model.CategoryBrand" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Project_64131000Model.Users" Width="1.5" PointX="0.5" PointY="5.875" />
+        <AssociationConnector Association="Project_64131000Model.FK_Customers_Users" />
+        <AssociationConnector Association="Project_64131000Model.FK_Employees_Users" />
+        <EntityTypeShape EntityType="Project_64131000Model.ShoppingCart" Width="1.5" PointX="7.5" PointY="0.5" />
+        <AssociationConnector Association="Project_64131000Model.FK__ShoppingC__Produ__2CF2ADDF" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

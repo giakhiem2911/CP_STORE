@@ -1,0 +1,71 @@
+﻿@model Project_64131000.Models.Users
+
+@{
+    ViewBag.Title = "Đăng Ký";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<style>
+    .register-container {
+        max-width: 400px;
+        margin: 50px auto;
+        padding: 30px;
+        background-color: #f9f9f9;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+    }
+
+        .register-container h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            text-align: center;
+            color: #333;
+        }
+
+    .btn-primary {
+        width: 100%;
+    }
+
+    .form-text {
+        text-align: center;
+        margin-top: 15px;
+    }
+</style>
+
+<div class="register-container">
+    <h2>@ViewBag.Title</h2>
+
+    @using (Html.BeginForm("Register", "Account_64131000", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="mb-3">
+            @Html.LabelFor(m => m.Username, "Tên đăng nhập", new { @class = "form-label" })
+            @Html.TextBoxFor(m => m.Username, new { @class = "form-control", @placeholder = "Nhập tên đăng nhập" })
+            @Html.ValidationMessageFor(m => m.Username, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="mb-3">
+            @Html.LabelFor(m => m.Email, "Email", new { @class = "form-label" })
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Nhập email" })
+            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="mb-3">
+            @Html.LabelFor(m => m.PhoneNumber, "Số điện thoại", new { @class = "form-label" })
+            @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control", @placeholder = "Nhập số điện thoại" })
+            @Html.ValidationMessageFor(m => m.PhoneNumber, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="mb-3">
+            @Html.LabelFor(m => m.PasswordHash, "Mật khẩu", new { @class = "form-label" })
+            @Html.PasswordFor(m => m.PasswordHash, new { @class = "form-control", @placeholder = "Nhập mật khẩu" })
+            @Html.ValidationMessageFor(m => m.PasswordHash, "", new { @class = "text-danger" })
+        </div>
+        <button type="submit" class="btn btn-primary">Đăng Ký</button>
+
+        <p class="form-text">
+            @Html.ActionLink("Đã có tài khoản? Đăng nhập ngay", "Login", null, new { @class = "text-info" })
+        </p>
+    }
+</div>

@@ -1,0 +1,166 @@
+﻿@model Project_64131000.Models.Products
+
+@{
+    ViewBag.Title = "Cập nhật Sản Phẩm";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript">
+                $(function ()
+                {
+                    var fileupload = $("#ProductImages");
+                    var image = $("#FileUpload");
+                    image.click(function ()
+                    {
+                        fileupload.click();
+                    });
+                    fileupload.change(function ()
+                    {
+                        var fileName = $(this).val().split('\\')[$(this).val().split('\\').length - 1];
+                        document.getElementById("ProductImage").value=fileName;
+                    });
+                });
+    </script>
+}
+
+<style>
+    body {
+        background-color: #f8f9fa;
+        font-family: 'Arial', sans-serif;
+    }
+
+    h2 {
+        color: #28a745; /* Màu xanh lá cho trang Edit */
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .form-container {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    label {
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    .form-control {
+        border-radius: 5px;
+        padding: 10px;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        border-radius: 5px;
+    }
+
+    .btn-primary {
+        background-color: #28a745; /* Màu xanh lá */
+        border: none;
+    }
+
+        .btn-primary:hover {
+            background-color: #218838;
+        }
+
+    .btn-secondary {
+        background-color: #6c757d;
+        border: none;
+    }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+
+    .form-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+</style>
+
+<h2>Cập Nhật Sản Phẩm</h2>
+
+<div class="form-container">
+    @using (Html.BeginForm("Edit", "Products_64131000", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.ProductId, "Mã sản phẩm")
+                @Html.TextBoxFor(model => model.ProductId, new { @class = "form-control", placeholder = "Nhập mã sản phẩm" })
+                @Html.ValidationMessageFor(model => model.ProductId, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ProductName, "Tên sản phẩm")
+                @Html.TextBoxFor(model => model.ProductName, new { @class = "form-control", placeholder = "Nhập tên sản phẩm" })
+                @Html.ValidationMessageFor(model => model.ProductName, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ProductDescription, "Mô tả")
+                @Html.TextAreaFor(model => model.ProductDescription, new { @class = "form-control", rows = 4, placeholder = "Nhập mô tả sản phẩm" })
+                @Html.ValidationMessageFor(model => model.ProductDescription, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Price, "Giá")
+                @Html.TextBoxFor(model => model.Price, new { @class = "form-control", placeholder = "Nhập giá sản phẩm" })
+                @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Unit, "Đơn vị tính")
+                @Html.TextBoxFor(model => model.Unit, new { @class = "form-control", placeholder = "Nhập đơn vị tính" })
+                @Html.ValidationMessageFor(model => model.Unit, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ProductImage, "Ảnh hiện tại")
+                <img src="@Url.Content("/Images/" + Model.ProductImage)" alt="@Model.ProductName" style="width: 150px; border-radius: 5px; margin-bottom: 10px;" />
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ProductImage, "Ảnh sản phẩm", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ProductImage, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ProductImage, "", new { @class = "text-danger" })
+                    <input type="file" name="ProductImages" id="ProductImages" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.CategoryId, "Danh mục")
+                @Html.DropDownList("CategoryId", null, "Chọn danh mục", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.BrandId, "Hãng")
+                @Html.DropDownList("BrandId", null, "Chọn hãng", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.BrandId, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Lưu" class="btn" style="box-sizing: border-box; border: 1px black" />
+                </div>
+            </div>
+        </div>
+        <div class="form-footer">
+            @Html.ActionLink("Quay lại", "Index", null, new { @class = "btn btn-secondary" })
+        </div>
+    }
+</div>
+

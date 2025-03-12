@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Project_64131000.Models.Brands>
+
+@{
+    ViewBag.Title = "Danh Sách Thương Hiệu";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Danh Sách Thương Hiệu</h2>
+
+    <div class="mb-3">
+        @Html.ActionLink("Tạo Thương Hiệu Mới", "Create", null, new { @class = "btn btn-primary" })
+    </div>
+
+    <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th class="text-center">
+                    Tên Hãng
+                </th>
+                <th class="text-center">
+                    Logo
+                </th>
+                <th class="text-center">Thao Tác</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BrandName)
+                    </td>
+                    <td>
+                        <img src="@Url.Content("~/Images/" + item.LogoUrl)" alt="@item.BrandName" class="img-fluid" style="max-width: 100px;" />
+                    </td>
+                    <td class="text-center">
+                        @Html.ActionLink("Chỉnh Sửa", "Edit", new { id = item.BrandId }, new { @class = "btn btn-warning btn-sm" }) |
+                        @Html.ActionLink("Chi Tiết", "Details", new { id = item.BrandId }, new { @class = "btn btn-info btn-sm" }) |
+                        @Html.ActionLink("Xóa", "Delete", new { id = item.BrandId }, new { @class = "btn btn-danger btn-sm" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<style>
+    .table {
+        margin-top: 20px;
+    }
+
+    .thead-dark th {
+        background-color: #343a40;
+        color: white;
+    }
+
+    .btn {
+        margin: 0 5px;
+    }
+</style>

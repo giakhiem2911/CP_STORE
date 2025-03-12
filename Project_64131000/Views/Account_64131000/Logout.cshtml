@@ -1,0 +1,19 @@
+﻿@using System.Web.Security
+@{
+    var isAuthenticated = User.Identity.IsAuthenticated;
+}
+
+<nav>
+    <ul>
+        @if (isAuthenticated)
+        {
+            <li>@Html.ActionLink("Trang chính", "Index", "HomePage_64131000")</li>
+            <li>@Html.ActionLink("Đăng xuất", "Logout", "Account_64131000", null, new { @class = "btn btn-danger" })</li>
+        }
+        else
+        {
+            <li>@Html.ActionLink("Đăng nhập", "Login", "Account_64131000")</li>
+            <li>@Html.ActionLink("Đăng ký", "Register", "Account_64131000")</li>
+        }
+    </ul>
+</nav>

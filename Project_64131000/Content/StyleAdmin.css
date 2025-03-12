@@ -1,0 +1,118 @@
+﻿/* StyleAdmin.css */
+
+/* General Body Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+/* Navbar Styling */
+.navbar {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.nav-link {
+    font-size: 1rem;
+    transition: color 0.3s;
+}
+
+    .nav-link:hover {
+        color: #28a745;
+    }
+
+/* Footer Styling */
+footer {
+    background-color: #212529;
+    color: #ddd;
+    padding: 40px 0;
+}
+
+    footer h5 {
+        color: #fff;
+        font-size: 1.25rem;
+        margin-bottom: 20px;
+    }
+
+    footer p, footer ul {
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
+
+    footer ul {
+        padding: 0;
+        list-style-type: none;
+    }
+
+        footer ul li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+            footer ul li i {
+                margin-right: 10px;
+                font-size: 1.2rem;
+                color: #28a745;
+            }
+
+        footer ul.d-flex li {
+            margin-right: 15px;
+        }
+
+            footer ul.d-flex li a {
+                font-size: 1.5rem;
+                color: #ddd;
+                transition: color 0.3s;
+            }
+
+                footer ul.d-flex li a:hover {
+                    color: #28a745;
+                }
+
+    footer .text-center {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        margin-top: 30px;
+        padding-top: 15px;
+        font-size: 0.85rem;
+    }
+
+/* Button and Input Enhancements */
+.btn {
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+    .btn:hover {
+        transform: scale(1.05);
+    }
+
+/* Utility Classes */
+.text-light:hover {
+    text-decoration: none;
+}
+
+.container {
+    max-width: 1200px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    footer .row {
+        text-align: center;
+    }
+
+    footer .col-md-4 {
+        margin-bottom: 20px;
+    }
+
+    footer ul.d-flex {
+        justify-content: center;
+    }
+}

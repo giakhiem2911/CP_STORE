@@ -1,0 +1,46 @@
+﻿@model Project_64131000.Models.Customers
+@{
+    ViewBag.Title = "Trang Chủ Khách Hàng";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <title>Chỉnh sửa thông tin - CP Store</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+</head>
+<body>
+    <div class="container mt-4">
+        <h2>Chỉnh sửa thông tin cá nhân</h2>
+        @using (Html.BeginForm("Edit", "HomePage_64131000", FormMethod.Post))
+        {
+            @Html.HiddenFor(model => model.Email) <!-- Giữ lại email trong form -->
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.FullName, "Họ tên")
+                @Html.TextBoxFor(model => model.FullName, new { @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.PhoneNumber, "Số điện thoại")
+                @Html.TextBoxFor(model => model.PhoneNumber, new { @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.CustomerAddress, "Địa chỉ")
+                @Html.TextBoxFor(model => model.CustomerAddress, new { @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.PasswordHash, "Mật khẩu")
+                @Html.TextBoxFor(model => model.PasswordHash, new { @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Cập nhật" class="btn btn-primary" />
+            </div>
+        }
+    </div>
+</body>
+</html>

@@ -1,0 +1,66 @@
+﻿@model Project_64131000.Models.Products
+
+@{
+    ViewBag.Title = "Chi Tiết Sản Phẩm";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#addToCart").click(function () {
+            var productId = "@Model.ProductId";
+            var quantity = $("#quantity").val();
+
+            $.ajax({
+                url: '@Url.Action("AddToCart", "ShoppingCarts_64131000")',
+                type: "POST",
+                data: { productId: productId, quantity: quantity },
+                success: function (response) {
+                    alert(response.message);
+                },
+                error: function () {
+                    alert("Có lỗi xảy ra, vui lòng thử lại.");
+                }
+            });
+        });
+    });
+</script>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <img src="@Url.Content("~/Images/" + Model.ProductImage)" alt="@Model.ProductName" class="img-fluid rounded" />
+        </div>
+        <div class="col-md-6">
+            <h1 class="product-name">@Model.ProductName</h1>
+            <p>@Model.ProductDescription</p>
+            <p class="product-price">@string.Format("{0:N0}", Model.Price) VNĐ</p>
+
+            <div class="quantity mb-4">
+                <label for="quantity" class="form-label">Số lượng:</label>
+                <input type="number" id="quantity" class="form-control" value="1" min="1" />
+            </div>
+
+            <button id="addToCart" class="btn btn-primary btn-lg">Thêm vào giỏ hàng</button>
+        </div>
+    </div>
+</div>
+
+<style>
+    .product-name {
+        font-size: 2rem;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .product-price {
+        font-size: 1.5rem;
+        color: #28a745;
+        margin-bottom: 20px;
+    }
+
+    .quantity {
+        margin-top: 20px;
+    }
+</style>

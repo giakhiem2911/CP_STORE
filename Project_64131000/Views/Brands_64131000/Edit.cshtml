@@ -1,0 +1,64 @@
+﻿@model Project_64131000.Models.Brands
+@{
+    ViewBag.Title = "Cập nhật Hãng";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            var fileupload = $("#LogoUrls");
+            var image = $("#FileUpload");
+            image.click(function () {
+                fileupload.click();
+            });
+            fileupload.change(function () {
+                var fileName = $(this).val().split('\\')[$(this).val().split('\\').length - 1];
+                document.getElementById("LogoUrl").value = fileName;
+            });
+        });
+    </script>
+}
+
+<h2>Cập nhật Hãng</h2>
+
+@using (Html.BeginForm("Edit", "Brands_64131000", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Brands</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.BrandId)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.BrandName, "Tên hãng", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.BrandName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.BrandName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.LogoUrl, "Ảnh hiện tại")
+        <img src="@Url.Content("/Images/" + Model.LogoUrl)" alt="@Model.LogoUrl" style="width: 150px; border-radius: 5px; margin-bottom: 10px;" />
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.LogoUrl, "Ảnh hãng", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.LogoUrl, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.LogoUrl, "", new { @class = "text-danger" })
+            <input type="file" name="LogoUrls" id="LogoUrls" />
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Lưu" class="btn btn-primary" />
+            @Html.ActionLink("Hủy", "Index", null, new { @class = "btn btn-default" })
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Quay lại danh sách", "Index")
+</div>

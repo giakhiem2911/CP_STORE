@@ -1,0 +1,100 @@
+﻿@model Project_64131000.Models.Products
+
+@{
+    ViewBag.Title = "Xóa Sản Phẩm";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<style>
+    body {
+        background-color: #f8f9fa;
+        font-family: 'Arial', sans-serif;
+    }
+
+    h2 {
+        color: #dc3545; /* Màu đỏ cho trang Delete */
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .form-container {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .form-actions {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 20px;
+    }
+
+    .btn-danger {
+        background-color: #dc3545;
+        border: none;
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 5px;
+    }
+
+        .btn-danger:hover {
+            background-color: #c82333;
+        }
+
+    .btn-secondary {
+        background-color: #6c757d;
+        border: none;
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 5px;
+    }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+</style>
+
+<h2>Xóa Sản Phẩm</h2>
+
+<div class="form-container">
+    <h4>Bạn có chắc chắn muốn xóa sản phẩm này?</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>Tên sản phẩm</dt>
+        <dd>@Html.DisplayFor(model => model.ProductName)</dd>
+
+        <dt>Mô tả</dt>
+        <dd>@Html.DisplayFor(model => model.ProductDescription)</dd>
+
+        <dt>Giá</dt>
+        <dd>@Html.DisplayFor(model => model.Price)</dd>
+
+        <dt>Đơn vị tiền</dt>
+        <dd>@Html.DisplayFor(model => model.Unit)</dd>
+
+        <dt>Ảnh sản phẩm</dt>
+        <dd>
+            <img src="@Url.Content("/Images/" + Model.ProductImage)" alt="@Model.ProductName" style="width: 150px; border-radius: 5px;" />
+        </dd>
+
+        <dt>Hãng</dt>
+        <dd>@Html.DisplayFor(model => model.Brands.BrandName)</dd>
+
+        <dt>Danh mục</dt>
+        <dd>@Html.DisplayFor(model => model.Categories.CategoryName)</dd>
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions">
+            <input type="submit" value="Xóa" class="btn btn-danger" />
+            @Html.ActionLink("Quay lại", "Index", null, new { @class = "btn btn-secondary" })
+        </div>
+    }
+</div>

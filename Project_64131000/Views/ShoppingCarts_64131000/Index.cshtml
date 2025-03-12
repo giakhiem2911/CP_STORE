@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Project_64131000.Models.ShoppingCart>
+
+@{
+    ViewBag.Title = "Giỏ Hàng";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Giỏ Hàng</h2>
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-warning text-center" role="alert">
+            Giỏ hàng của bạn đang trống.
+        </div>
+    }
+    else
+    {
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Sản Phẩm</th>
+                    <th>Số Lượng</th>
+                    <th>Giá</th>
+                    <th>Tổng</th>
+                    <th>Hành Động</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <img src="@Url.Content("~/Images/" + item.Products.ProductImage)" alt="@item.Products.ProductName" class="img-thumbnail" style="height: 100px; object-fit: contain;" />
+                            <div>@item.Products.ProductName</div>
+                        </td>
+                        <td>@item.Quantity</td>
+                        <td>@string.Format("{0:N0}", item.Products.Price) VNĐ</td>
+                        <td>@string.Format("{0:N0}", item.Products.Price * item.Quantity) VNĐ</td>
+                        <td>
+                            @Html.ActionLink("Hủy", "Delete", "ShoppingCarts_64131000", new { id = item.CartId }, new { @class = "btn btn-danger btn-sm" })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <div class="text-right">
+            <a href="@Url.Action("Checkout", "Homepage_64131000")" class="btn btn-success">Thanh Toán</a>
+        </div>
+    }
+</div>
+
+<style>
+    .img-thumbnail {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+    }
+</style>

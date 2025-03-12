@@ -1,0 +1,81 @@
+﻿@model Project_64131000.Models.Products
+
+@{
+    ViewBag.Title = "Chi Tiết Sản Phẩm";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2 class="text-center text-success mb-4">Chi Tiết Sản Phẩm</h2>
+
+<div class="card shadow-sm" style="max-width: 800px; margin: 0 auto;">
+    <div class="card-header bg-success text-white text-center">
+        <h5>@Model.ProductName</h5>
+    </div>
+    <div class="card-body">
+        <div class="row mb-3">
+            <div class="col-md-4 text-center">
+                <img src="@Url.Content("~/Images/" + Model.ProductImage)" alt="@Model.ProductName" class="img-fluid rounded" style="max-width: 200px; border: 1px solid #ddd;">
+            </div>
+            <div class="col-md-8">
+                <table class="table table-borderless">
+                    <tr>
+                        <th style="width: 150px;">Mã sản phẩm:</th>
+                        <td>@Model.ProductId</td>
+                    </tr>
+                    <tr>
+                        <th>Tên sản phẩm:</th>
+                        <td>@Model.ProductName</td>
+                    </tr>
+                    <tr>
+                        <th>Mô tả:</th>
+                        <td>@Model.ProductDescription</td>
+                    </tr>
+                    <tr>
+                        <th>Giá:</th>
+                        <td>@String.Format("{0:N0}", Model.Price) VND</td>
+                    </tr>
+                    <tr>
+                        <th>Đơn vị tính:</th>
+                        <td>@Model.Unit</td>
+                    </tr>
+                    <tr>
+                        <th>Danh mục:</th>
+                        <td>@Model.Categories.CategoryName</td>
+                    </tr>
+                    <tr>
+                        <th>Hãng:</th>
+                        <td>@Model.Brands.BrandName</td>
+                    </tr>
+                    <tr>
+                        <th>Ngày thêm:</th>
+                        <td>@Model.CreateDate</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer text-center">
+        @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.ProductId }, new { @class = "btn btn-primary mx-2" })
+        @Html.ActionLink("Trở về danh sách", "Index", null, new { @class = "btn btn-secondary mx-2" })
+    </div>
+</div>
+
+<style>
+    h2 {
+        font-family: 'Arial', sans-serif;
+        font-weight: bold;
+    }
+
+    .card {
+        border-radius: 10px;
+    }
+
+    .table th {
+        font-weight: bold;
+        color: #555;
+    }
+
+    .table td {
+        color: #333;
+    }
+</style>

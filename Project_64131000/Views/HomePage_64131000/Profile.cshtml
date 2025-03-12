@@ -1,0 +1,70 @@
+﻿@model Project_64131000.Models.Customers
+
+@{
+    ViewBag.Title = "Chi Tiết Khách Hàng";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<h2 class="text-center text-success mb-4">Thông tin cá nhân</h2>
+
+<div class="card shadow-sm" style="max-width: 800px; margin: 0 auto;">
+    <div class="card-header bg-success text-white text-center">
+        <h5>@Model.FullName</h5>
+    </div>
+    <div class="card-body">
+        <div class="row mb-3">
+            <div class="col-md-8">
+                <table class="table table-borderless">
+                    <tr>
+                        <th style="width: 150px;">Mã khách hàng:</th>
+                        <td>@Model.CustomerId</td>
+                    </tr>
+                    <tr>
+                        <th>Tên khách hàng:</th>
+                        <td>@Model.FullName</td>
+                    </tr>
+                    <tr>
+                        <th>Địa chỉ:</th>
+                        <td>@(!string.IsNullOrEmpty(Model.CustomerAddress) ? Model.CustomerAddress : "Cập nhật địa chỉ")</td>
+                    </tr>
+                    <tr>
+                        <th>Email:</th>
+                        <td>@Model.Email</td>
+                    </tr>
+                    <tr>
+                        <th>Điện thoại:</th>
+                        <td>@Model.PhoneNumber</td>
+                    </tr>
+                    <tr>
+                        <th>Mật khẩu:</th>
+                        <td>@Model.PasswordHash</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer text-center">
+        @Html.ActionLink("Chỉnh sửa", "Edit", new { email = Model.Email }, new { @class = "btn btn-primary mx-2" })
+        @Html.ActionLink("Trở về danh sách", "Index", null, new { @class = "btn btn-secondary mx-2" })
+    </div>
+</div>
+
+<style>
+    h2 {
+        font-family: 'Arial', sans-serif;
+        font-weight: bold;
+    }
+
+    .card {
+        border-radius: 10px;
+    }
+
+    .table th {
+        font-weight: bold;
+        color: #555;
+    }
+
+    .table td {
+        color: #333;
+    }
+</style>

@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Project_64131000.Models.Categories>
+
+@{
+    ViewBag.Title = "Danh sách danh mục";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<h2>Danh sách danh mục</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Tên danh mục</th>
+            <th>Hành động</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var category in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(category.CategoryName, "ProductsInCategory", "Categories_64131000", new { id = category.CategoryId }, null)
+                </td>
+                <td>
+                    @Html.ActionLink("Chi tiết", "Details", new { id = category.CategoryId }) |
+                    @Html.ActionLink("Sửa", "Edit", new { id = category.CategoryId }) |
+                    @Html.ActionLink("Xóa", "Delete", new { id = category.CategoryId })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<p>
+    @Html.ActionLink("Tạo danh mục mới", "Create")
+</p>

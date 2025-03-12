@@ -1,0 +1,84 @@
+﻿@model Project_64131000.Models.Checkout_64131000
+
+@{
+    ViewBag.Title = "Thanh Toán";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+<h2 class="text-center mb-4">Thanh Toán</h2>
+
+@using (Html.BeginForm("ProcessCheckout", "HomePage_64131000", FormMethod.Post, new { @class = "checkout-form" }))
+{
+    <div class="card mb-4">
+        <div class="card-header">
+            <h3>Thông Tin Giỏ Hàng</h3>
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Tên Sản Phẩm</th>
+                        <th>Giá</th>
+                        <th>Số Lượng</th>
+                        <th>Tổng</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.CartItems)
+                    {
+                        <tr>
+                            <td>@item.Products.ProductName</td>
+                            <td>@string.Format("{0:N0} VNĐ", item.Products.Price)</td>
+                            <td>@item.Quantity</td>
+                            <td>@string.Format("{0:N0} VNĐ", item.Products.Price * item.Quantity)</td>
+                        </tr>
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="3"><strong>Tổng Cộng:</strong></td>
+                        <td><strong>@Model.TotalAmount.ToString("N0") VNĐ</strong></td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+
+    <div class="card mb-4">
+        <div class="card-header">
+            <h3>Thông Tin Giao Hàng</h3>
+        </div>
+        <div class="card-body">
+            <div class="form-group">
+                @Html.LabelFor(m => m.ShippingAddress, "Địa chỉ giao hàng", new { @class = "control-label" })
+                @Html.TextBoxFor(m => m.ShippingAddress, new { @class = "form-control", placeholder = "Nhập địa chỉ giao hàng" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.PhoneNumber, "Số điện thoại", new { @class = "control-label" })
+                @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control", placeholder = "Nhập số điện thoại" })
+            </div>
+        </div>
+    </div>
+
+    <div class="card mb-4">
+        <div class="card-header">
+            <h3>Phương Thức Thanh Toán</h3>
+        </div>
+        <div class="card-body">
+            <div class="form-group">
+                @Html.LabelFor(m => m.PaymentMethod, "Phương thức thanh toán", new { @class = "control-label" })
+                @Html.DropDownListFor(m => m.PaymentMethod, new SelectList(new List<SelectListItem>
+                {
+                    new SelectListItem { Value = "CreditCard", Text = "Thẻ Tín Dụng" },
+                    new SelectListItem { Value = "Cash", Text = "Tiền Mặt" }
+                }, "Value", "Text"), "Chọn Phương Thức", new { @class = "form-control" })
+            </div>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-block">Xác Nhận Thanh Toán</button>
+}
+
+<div class="text-center mt-4">
+    <a href="@Url.Action("Index", "HomePage_64131000")" class="btn btn-secondary">Quay Lại</a>
+</div>

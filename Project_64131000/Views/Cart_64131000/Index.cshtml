@@ -1,0 +1,63 @@
+﻿@model List<Project_64131000.Models.ShoppingCart>
+
+@{
+    ViewBag.Title = "Giỏ hàng";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<h2>Giỏ hàng</h2>
+
+@if (Model == null || !Model.Any())
+{
+    <p>Giỏ hàng của bạn đang trống.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Tên sản phẩm</th>
+                <th>Số lượng</th>
+                <th>Hành động</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.ProductId</td> <!-- Cần có phương thức để lấy tên sản phẩm -->
+                    <td>@item.Quantity</td>
+                    <td>
+                        @Html.ActionLink("Xóa", "RemoveFromCart", new { productId = item.ProductId }, new { @class = "btn btn-danger btn-sm" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+}
+else
+{
+<table class="table">
+    <thead>
+        <tr>
+            <th>Tên sản phẩm</th>
+            <th>Số lượng</th>
+            <th>Hành động</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ProductId</td> <!-- Cần có phương thức để lấy tên sản phẩm -->
+                <td>@item.Quantity</td>
+                <td>
+                    @Html.ActionLink("Xóa", "RemoveFromCart", new { productId = item.ProductId }, new { @class = "btn btn-danger btn-sm" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+}

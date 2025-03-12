@@ -1,0 +1,109 @@
+﻿@model IEnumerable<Project_64131000.Models.Products>
+
+@{
+    ViewBag.Title = "Danh sách sản phẩm";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+
+    var grid = new WebGrid(source: Model, canPage: true, canSort: true, rowsPerPage: 10);
+}
+
+<style>
+    body {
+        background-color: #f8f9fa;
+        font-family: Arial, sans-serif;
+    }
+
+    h2 {
+        margin-bottom: 20px;
+        color: #343a40;
+    }
+
+    .btn {
+        margin-bottom: 15px;
+        border-radius: 5px;
+    }
+
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+        .table th, .table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .table th {
+            background-color: #f1f1f1;
+            color: black;
+        }
+
+        .table tr:hover {
+            background-color: #f1f1f1;
+        }
+
+    .product-image {
+        width: 100px;
+        height: auto;
+        border-radius: 5px;
+    }
+
+    .btn-warning {
+        background-color: #ffc107;
+    }
+
+    .btn-info {
+        background-color: #17a2b8;
+    }
+
+    .btn-danger {
+        background-color: #dc3545;
+    }
+    .table a {
+        color: black;
+        text-decoration-line: none;
+    }
+    .table-footer td{
+        text-align: center;
+        color:blue;
+    }
+    .table-footer a:hover{
+        color:blue;
+    }
+</style>
+
+<h2 style="font-weight: bold">Danh Sách Sản Phẩm</h2>
+
+<p>
+    @Html.ActionLink("Thêm Mới", "Create", null, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Tìm kiếm", "SearchProduct", null, new { @class = "btn btn-primary" })
+</p>
+
+<div>
+    @grid.GetHtml(
+        tableStyle: "table table-striped table-hover",
+        headerStyle: "table-header",
+        footerStyle: "table-footer",
+        alternatingRowStyle: "table-alternating",
+        columns: grid.Columns(
+            grid.Column("ProductName", "Sản phẩm"),
+            grid.Column("ProductDescription", "Mô tả"),
+            grid.Column("Price", "Giá", format: (item) => string.Format("{0:N0}", item.Price)),
+            grid.Column("Unit", "Đơn vị tính"),
+            grid.Column("ProductImage", "Ảnh", format: (item) =>
+                Html.Raw($"<img src='/Images/{item.ProductImage}' alt='{item.ProductName}' class='product-image' />")),
+            grid.Column("Brands.BrandName", "Hãng"),
+            grid.Column("Categories.CategoryName", "Danh mục"),
+            grid.Column("", "Thao Tác", format: (item) =>
+                Html.Raw(
+                    Html.ActionLink("Chỉnh Sửa", "Edit", new { id = item.ProductId }, new { @class = "btn btn-warning btn-sm" }) + " | " +
+                    Html.ActionLink("Chi Tiết", "Details", new { id = item.ProductId }, new { @class = "btn btn-info btn-sm" }) + " | " +
+                    Html.ActionLink("Xóa", "Delete", new { id = item.ProductId }, new { @class = "btn btn-danger btn-sm" })
+                ))
+        )
+    )
+</div>

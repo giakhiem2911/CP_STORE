@@ -1,0 +1,52 @@
+﻿@model Project_64131000.Models.ShoppingCart
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}   
+
+<h3>Bạn có chắc chắn muốn xóa sản phẩm này khỏi giỏ hàng?</h3>
+<div>
+    <h4>Chi tiết sản phẩm</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Mã người dùng
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UserId)
+        </dd>
+
+        <dt>
+            Số lượng
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Quantity)
+        </dd>
+
+        <dt>
+            Được thêm vào ngày: 
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CreatedAt)
+        </dd>
+
+        <dt>
+            Tên sản phẩm
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Products.ProductName)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm("DeleteConfirmed", "ShoppingCarts_64131000", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <input type="hidden" name="id" value="@Model.CartId" />
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xóa" class="btn btn-danger" />
+            @Html.ActionLink("Quay lại", "Index", null, new { @class = "btn btn-secondary" })
+        </div>
+    }
+</div>

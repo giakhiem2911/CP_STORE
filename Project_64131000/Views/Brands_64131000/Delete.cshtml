@@ -1,0 +1,45 @@
+﻿@model Project_64131000.Models.Brands
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Delete Brand</h2>
+
+<h3>Are you sure you want to delete this brand?</h3>
+<div>
+    <h4>Brand Details</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Tên hãng
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.BrandName)
+        </dd>
+
+        <dt>
+            Logo
+        </dt>
+        <dd>
+            @if (!string.IsNullOrEmpty(Model.LogoUrl))
+            {
+                <img src="@Url.Content("~/Images/" + Model.LogoUrl)" alt="Logo" style="max-width: 200px; max-height: 100px;" />
+            }
+            else
+            {
+                <p>No logo available</p>
+            }
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-actions no-color">
+            <input type="submit" value="Xóa" class="btn btn-danger" />
+            @Html.ActionLink("Quay lại", "Index", null, new { @class = "btn btn-default" })
+        </div>
+    }
+</div>

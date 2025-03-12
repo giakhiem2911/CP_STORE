@@ -1,0 +1,13 @@
+﻿@model Project_64131000.Models.Users
+
+<h2>Xóa Người Dùng</h2>
+<h3>Bạn có chắc chắn muốn xóa người dùng này: @Model.Username?</h3>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div>
+        <input type="submit" value="Xóa" />
+        @Html.ActionLink("Hủy", "Users")
+    </div>
+}

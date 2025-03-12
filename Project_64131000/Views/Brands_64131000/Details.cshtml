@@ -1,0 +1,45 @@
+﻿@model Project_64131000.Models.Brands
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Chi tiết Thương Hiệu</h2>
+
+<div class="container">
+    <h4>Thông Tin Thương Hiệu</h4>
+    <hr />
+
+    <div class="row">
+        <div class="col-md-6">
+            <dl class="dl-horizontal">
+                <dt>
+                    Tên hãng
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.BrandName)
+                </dd>
+
+                <dt>
+                    Logo
+                </dt>
+                <dd>
+                    @if (!string.IsNullOrEmpty(Model.LogoUrl))
+                    {
+                        <img src="@Model.LogoUrl" alt="Logo" style="max-width: 200px; max-height: 100px;" class="img-thumbnail" />
+                    }
+                    else
+                    {
+                        <span>Chưa có logo</span>
+                    }
+                </dd>
+            </dl>
+        </div>
+    </div>
+</div>
+
+<p>
+    @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.BrandId }, new { @class = "btn btn-primary" }) |
+    @Html.ActionLink("Trở lại Danh sách", "Index", null, new { @class = "btn btn-secondary" })
+</p>

@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Project_64131000.Models.Employees>
+
+@{
+    ViewBag.Title = "Danh sách nhân viên";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+
+    @* Tạo WebGrid *@
+    var grid = new WebGrid(source: Model, canPage: true, canSort: true, rowsPerPage: 10);
+}
+<style>
+    .table-footer {
+        text-align: center; /* Căn giữa văn bản */
+    }
+
+    table a {
+        color: black;
+        text-decoration-line: none;
+    }
+</style>
+
+<div class="container mt-4">
+    <h2 class="mb-4">Danh sách nhân viên</h2>
+
+    <p>
+        @Html.ActionLink("Thêm nhân viên", "Create", null, new { @class = "btn btn-primary mb-2" })
+    </p>
+    @grid.GetHtml(
+        tableStyle: "table table-striped table-bordered",
+        headerStyle: "thead-dark",
+        footerStyle: "table-footer",
+        columns: grid.Columns(
+            grid.Column("FullName", "Tên nhân viên"),
+            grid.Column("Email", "Email"),
+            grid.Column("PhoneNumber", "Số điện thoại"),
+            grid.Column("PasswordHash", "Mật khẩu"),
+            grid.Column("Role", "Vai trò"),
+            grid.Column("EmployeeId", "Lựa chọn", format: (item) =>
+            {
+                return new HtmlString(
+                    @Html.ActionLink("Chỉnh sửa", "Edit", new { id = item.EmployeeId }, new { @class = "btn btn-warning btn-sm" }) + " " +
+                    @Html.ActionLink("Chi tiết", "Details", new { id = item.EmployeeId }, new { @class = "btn btn-info btn-sm" }) + " " +
+                    @Html.ActionLink("Xóa", "Delete", new { id = item.EmployeeId }, new { @class = "btn btn-danger btn-sm" })
+                );
+            })
+        )
+    )
+</div>

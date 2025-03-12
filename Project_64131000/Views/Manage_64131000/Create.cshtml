@@ -1,0 +1,30 @@
+﻿@model Project_64131000.Models.Users
+
+<h2>Tạo Người Dùng Mới</h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div>
+        @Html.LabelFor(m => m.Username)
+        @Html.TextBoxFor(m => m.Username)
+        @Html.ValidationMessageFor(m => m.Username)
+    </div>
+    <div>
+        @Html.LabelFor(m => m.PasswordHash)
+        @Html.PasswordFor(m => m.PasswordHash)
+        @Html.ValidationMessageFor(m => m.PasswordHash)
+    </div>
+    <div>
+        @Html.LabelFor(m => m.Email)
+        @Html.TextBoxFor(m => m.Email)
+        @Html.ValidationMessageFor(m => m.Email)
+    </div>
+    <div>
+        @Html.LabelFor(m => m.Role)
+        @Html.TextBoxFor(m => m.Role)
+        @Html.ValidationMessageFor(m => m.Role)
+    </div>
+    <div>
+        <input type="submit" value="Tạo Người Dùng" />
+    </div>
+}

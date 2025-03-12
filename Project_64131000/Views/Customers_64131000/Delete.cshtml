@@ -1,0 +1,45 @@
+﻿@model Project_64131000.Models.Customers
+
+@{
+    ViewBag.Title = "Xóa Khách Hàng";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container mt-5">
+    <h2>Xóa Khách Hàng</h2>
+    <h3>Bạn có chắc chắn muốn xóa không?</h3>
+
+    <div class="card">
+        <div class="card-header bg-danger text-white">
+            <h4>Thông tin Khách Hàng</h4>
+        </div>
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-3">Họ và Tên:</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.FullName)</dd>
+
+                <dt class="col-sm-3">Email:</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Email)</dd>
+
+                <dt class="col-sm-3">Số Điện Thoại:</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.PhoneNumber)</dd>
+
+                <dt class="col-sm-3">Địa Chỉ:</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.CustomerAddress)</dd>
+
+                <dt class="col-sm-3">Mật Khẩu:</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.PasswordHash)</dd>
+            </dl>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-danger">Xóa</button>
+                    @Html.ActionLink("Quay lại danh sách", "Index", null, new { @class = "btn btn-secondary" })
+                </div>
+            }
+        </div>
+    </div>
+</div>

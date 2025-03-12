@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "Thanh Toán Thành Công";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<h2>Thanh Toán Thành Công</h2>
+
+<div class="alert alert-success">
+    <strong>Cảm ơn bạn!</strong>
+    Thanh toán của bạn đã được xử lý thành công.
+</div>
+
+<p>
+    Đơn hàng của bạn đã được ghi nhận. Chúng tôi sẽ xử lý và giao hàng cho bạn trong thời gian sớm nhất.
+</p>
+
+<p>
+    Nếu bạn cần thêm thông tin hoặc hỗ trợ, vui lòng liên hệ với chúng tôi qua <a href="@Url.Action("Index", "HomePage_64131000")">trang liên hệ</a>.
+</p>
+
+<p>
+    <a href="@Url.Action("Index", "HomePage_64131000")" class="btn btn-primary">Quay lại trang chủ</a>
+</p>

@@ -1,0 +1,22 @@
+﻿@model Project_64131000.Models.Orders
+
+@{
+    ViewBag.Title = "Thanh toán";
+}
+
+<h2>Thanh toán</h2>
+
+@using (Html.BeginForm("Pay", "Orders_64131000", FormMethod.Post))
+{
+    <div>
+        <label>Khách hàng:</label>
+        @Html.DropDownList("customerId", new SelectList(ViewBag.Customers, "CustomerId", "FullName"), "Chọn khách hàng", new { @class = "form-control" })
+    </div>
+    <div>
+        <label>Nhân viên:</label>
+        @Html.DropDownList("employeeId", new SelectList(ViewBag.Employees, "EmployeeId", "FullName"), "Chọn nhân viên", new { @class = "form-control" })
+    </div>
+    <div>
+        <input type="submit" value="Thanh toán" class="btn btn-primary" />
+    </div>
+}
